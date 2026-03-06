@@ -19,7 +19,7 @@ if (APPLE)
 endif()
 
 # ----------------------------------------------------------------------------
-# 1. NOME DO PROJETO E VERSÃO (Customizado para Master Musica)
+# 1. PROJECT NAME AND VERSION (Customized for Master Musica)
 # ----------------------------------------------------------------------------
 project(MusicistaLink VERSION 1.7.2)
 
@@ -63,7 +63,7 @@ if (VST2_SDK_PATH)
 endif()
 
 # ----------------------------------------------------------------------------
-# 2. IDENTIDADE NO MACOS (Customizado para Master Musica)
+# 2. MACOS IDENTITY (Customized for Master Musica)
 # ----------------------------------------------------------------------------
 set (MacPList "<plist version=\"1.0\">
 <dict>
@@ -94,7 +94,7 @@ function(sono_add_custom_plugin_target target_name product_name formats is_instr
    endif()
 
 # ----------------------------------------------------------------------------
-# 3. METADADOS DO APLICATIVO E PLUGIN (Customizado para Master Musica)
+# 3. APP AND PLUGIN METADATA (Customized for Master Musica)
 # ----------------------------------------------------------------------------
     juce_add_plugin("${target_name}"
         IS_SYNTH "${is_instrument}"
@@ -524,7 +524,7 @@ function(sono_add_custom_plugin_target target_name product_name formats is_instr
 endfunction()
 
 # ----------------------------------------------------------------------------
-# 4. CRIAÇÃO DOS EXECUTÁVEIS (Customizado para Musicista Link)
+# 4. EXECUTABLE CREATION (Customized for Musicista Link)
 # ----------------------------------------------------------------------------
 sono_add_custom_plugin_target(MusicistaLink "Musicista Link" "${FormatsToBuild}" FALSE  "MLnk")
 
