@@ -1,0 +1,20 @@
+services:
+  # O Servidor de Áudio AOO
+  aoo-server:
+    build: .
+    container_name: sonobus_backend
+    restart: always
+    ports:
+      - "10999:10999/udp"
+
+  # O Sincronizador de DNS (DDNS)
+  hostoo-connector:
+    image: python:3.9-slim
+    container_name: hostoo_dns_sync
+    restart: always
+    environment:
+      - API_TOKEN=XdLHPyXzyyZYysU6JnKRJtkyidXoSioskTJJHBmsLK5ooLa94hR06tRDmGBM
+      - SUBDOMAIN=link.musicista.com.br
+    volumes:
+      - ./sync.py:/app/sync.py
+    command: python /app/sync.py
