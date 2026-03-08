@@ -2,27 +2,28 @@ name: Build Musicista Link (Windows)
 
 on:
   push:
-    branches: [ "main" ] # Runs automatically when you push new code
-  workflow_dispatch: # Allows running the build manually with a click
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Clonar o Repositório
+    - name: Checkout Repository
       uses: actions/checkout@v4
       with:
-        submodules: recursive # Crucial para baixar dependências externas do C++
+        submodules: recursive
 
-    - name: Configurar o CMake
-      run: cmake -B build -S .
+    - name: Configure CMake
+      # Aqui está a mágica: dizemos ao CMake para ler o código dentro de vendor/sonobus
+      run: cmake -B build -S vendor/sonobus
 
-    - name: Compilar o Projeto
+    - name: Build Project
       run: cmake --build build --config Release
 
-    - name: Salvar o Executável (.exe)
+    - name: Upload Artifact (.exe)
       uses: actions/upload-artifact@v4
       with:
         name: MusicistaLink-Windows
-        path: build/Release/*.exe # Ajustar o caminho exato dependendo da saída do seu CMake
+        path: build/Release/*.exe
