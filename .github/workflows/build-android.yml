@@ -23,11 +23,11 @@ jobs:
 
     - name: Make gradlew executable
       # Apontando para a pasta correta do projeto Android
-      working-directory: ./vendor/sonobus/android
+      working-directory: ./android
       run: chmod +x ./gradlew
 
     - name: Build Android APK
-      working-directory: ./vendor/sonobus/android
+      working-directory: ./android
       run: ./gradlew assembleDebug
 
     - name: Upload Artifact (.apk)
