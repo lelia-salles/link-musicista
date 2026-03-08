@@ -22,17 +22,16 @@ jobs:
         distribution: 'temurin'
 
     - name: Make gradlew executable
-      # Apontando para a pasta correta do projeto Android
-      working-directory: ./android
+      
+      working-directory: ./Android
       run: chmod +x ./gradlew
 
     - name: Build Android APK
-      working-directory: ./android
+      working-directory: ./Androidd
       run: ./gradlew assembleDebug
 
     - name: Upload Artifact (.apk)
       uses: actions/upload-artifact@v4
       with:
-        name: MusicistaLink-Android
-        # Caminho atualizado para capturar o APK de dentro do vendor
-        path: vendor/sonobus/android/app/build/outputs/apk/debug/*.apk
+        name: MusicistaLink-Android        
+        path: android/app/build/outputs/apk/debug/*.apk
