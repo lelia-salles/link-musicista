@@ -1,0 +1,40 @@
+name: Build Musicista Link (Android)
+
+on:
+  push:
+    branches: [ "main", "master" ] # Trigger on push to main or master branches
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Linux is the industry standard and fastest for Android builds
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive # Fetches C++ dependencies
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17' # Stable version for modern Android/Gradle builds
+        distribution: 'temurin'
+
+    - name: Make gradlew executable
+      # Windows often loses execution permissions for Linux scripts. This fixes it.
+      working-directory: ./android
+      run: chmod +x ./gradlew
+
+    - name: Build Android APK
+      # Run the Gradle task to compile the C++ code and assemble the Android package
+      working-directory: ./android
+      run: ./gradlew assembleDebug
+
+    - name: Upload Artifact (.apk)
+      uses: actions/upload-artifact@v4
+      with:
+        name: MusicistaLink-Android
+        # Upload the generated APK. 
+        # Note: Adjust the path if your Gradle outputs to a different subfolder.
+        path: android/app/build/outputs/apk/debug/*.apk
