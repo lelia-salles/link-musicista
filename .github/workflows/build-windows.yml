@@ -1,0 +1,28 @@
+name: Build Musicista Link (Windows)
+
+on:
+  push:
+    branches: [ "main" ] # Runs automatically when you push new code
+  workflow_dispatch: # Allows running the build manually with a click
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Clonar o Repositório
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive # Crucial para baixar dependências externas do C++
+
+    - name: Configurar o CMake
+      run: cmake -B build -S .
+
+    - name: Compilar o Projeto
+      run: cmake --build build --config Release
+
+    - name: Salvar o Executável (.exe)
+      uses: actions/upload-artifact@v4
+      with:
+        name: MusicistaLink-Windows
+        path: build/Release/*.exe # Ajustar o caminho exato dependendo da saída do seu CMake

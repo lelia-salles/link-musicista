@@ -2,27 +2,31 @@ name: Build Musicista Link (Windows)
 
 on:
   push:
-    branches: [ "main" ] # Runs automatically when you push new code
-  workflow_dispatch: # Allows running the build manually with a click
+    branches: [ "main", "master" ] # Trigger on push to main or master branches
+  workflow_dispatch: # Allow manual trigger from the GitHub Actions tab
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-latest # Use the latest Windows Server environment provided by GitHub
 
     steps:
-    - name: Clonar o Repositório
+    - name: Checkout Repository
       uses: actions/checkout@v4
       with:
-        submodules: recursive # Crucial para baixar dependências externas do C++
+        submodules: recursive # Crucial: fetches all nested C++ dependencies (like JUCE or AOO)
 
-    - name: Configurar o CMake
+    - name: Configure CMake
+      # Configure the build system, specifying the output directory as 'build'
       run: cmake -B build -S .
 
-    - name: Compilar o Projeto
+    - name: Build Project
+      # Compile the C++ code using the Release configuration for optimal performance
       run: cmake --build build --config Release
 
-    - name: Salvar o Executável (.exe)
+    - name: Upload Artifact (.exe)
       uses: actions/upload-artifact@v4
       with:
         name: MusicistaLink-Windows
-        path: build/Release/*.exe # Ajustar o caminho exato dependendo da saída do seu CMake
+        # Upload the generated executable so it can be downloaded. 
+        # Note: Adjust this path if your CMake outputs the .exe to a different subfolder.
+        path: build/Release/*.exe
