@@ -1,0 +1,6 @@
+[submodule "deps/juce"]
+	path = deps/juce
+	url = https://github.com/essej/JUCE.git
+[submodule "deps/aoo"]
+	path = deps/aoo
+	url = https://github.com/essej/aoo.git
