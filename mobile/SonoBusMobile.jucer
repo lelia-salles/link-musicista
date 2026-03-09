@@ -438,6 +438,7 @@
         <MODULEPATH id="juce_audio_basics" path="../deps/juce/modules"/>
         <MODULEPATH id="ff_meters" path="../deps"/>
         <MODULEPATH id="juce_dsp" path="../deps/juce/modules"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../deps/juce/modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
     <ANDROIDSTUDIO targetFolder="Builds/Android" extraDefs="USE_CODEC_OPUS=1&#10;AOO_TIMEFILTER_CHECK=0&#10;AOO_STATIC&#10;JUCE_STANDALONE_FILTER_WINDOW_USE_KIOSK_MODE=0&#10;JUCE_ANDROID_ACTIVITY_OVERRIDE_CLASSNAME=&quot;com_sonosaurus_sonobus_SonoBusActivity&quot;&#10;JUCE_ANDROID_ACTIVITY_OVERRIDE_CLASSPATH=&quot;com/sonosaurus/sonobus/SonoBusActivity&quot;"
@@ -474,6 +475,7 @@
         <MODULEPATH id="juce_audio_devices" path="../deps/juce/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../deps/juce/modules"/>
         <MODULEPATH id="ff_meters" path="../deps"/>
+        <MODULEPATH id="juce_audio_processors_headless" path="../deps/juce/modules"/>
       </MODULEPATHS>
     </ANDROIDSTUDIO>
   </EXPORTFORMATS>
@@ -485,6 +487,8 @@
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
             useGlobalPath="0"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors_headless" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="0"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
