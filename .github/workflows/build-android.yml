@@ -27,7 +27,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build Android APK
-      working-directory: ./Androidd
+      working-directory: ./Android
       run: ./gradlew assembleDebug
 
     - name: Upload Artifact (.apk)
